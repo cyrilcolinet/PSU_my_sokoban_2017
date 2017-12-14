@@ -58,10 +58,17 @@ CP 					= cp
 
 RM 					= rm -f
 
+INCLUDE 			= ./include
+
+REMOTE_INCLUDE 		= ../../include/
+
+INCLUDE_FILE		= my.h
+
 OBJ 				= $(SRC:.c=.o)
 
 all:				$(NAME)
 					$(CP) $(NAME) ../$(NAME)
+					$(CP) $(INCLUDE)/$(INCLUDE_FILE) $(REMOTE_INCLUDE)
 
 $(NAME):			$(OBJ)
 					$(AR) $(NAME) $(OBJ)
@@ -72,5 +79,6 @@ clean:
 fclean: 			clean
 					$(RM) ../$(NAME)
 					$(RM) $(NAME)
+					$(RM) $(REMOTE_INCLUDE)$(INCLUDE_FILE)
 
 re: 				fclean all
