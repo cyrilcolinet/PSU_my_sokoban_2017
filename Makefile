@@ -15,7 +15,7 @@ SRC 			= src/sokoban.c 			\
 
 CFLAGS 			= -Wall -Wextra -Werror -I./include -g3
 
-EXTRA_FLAGS 	= -L./lib/ -lmy -g3
+EXTRA_FLAGS 	= -L./lib/ -lmy -g3 -lncurses
 
 CC 				= gcc
 

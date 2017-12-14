@@ -5,11 +5,17 @@
 ** sokoban functions (header file)
 */
 
-# include <curses.h>
-# include <stdlib.h>
-
 # ifndef SOKOBAN_H
 # define SOKOBAN_H
+
+# include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <ncurses.h>
+# include <stdlib.h>
+# include <termios.h>
+
+typedef struct termios term_t;
 
 int 		sokoban_main(int ac, char **av);
 
