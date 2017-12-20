@@ -16,15 +16,20 @@ param_t *init_parameters(void)
 	param->objects_len = 0;
 	param->heigth = 0;
 	param->width = 0;
+	param->objects_off = 0;
 
 	return (param);
 }
 
 void add_object(param_t *param, type_e type, int x, int y)
 {
-	param->objects[param->objects_len].type = type;
-	param->objects[param->objects_len].x = x;
-	param->objects[param->objects_len].y = y;
+	object_t *obj = param->objects;
+
+	obj[param->objects_off].type = type;
+	obj[param->objects_off].x = x;
+	obj[param->objects_off].y = y;
+	param->objects_off += 1;
+	param->objects = obj;
 }
 
 void destroy(param_t *param)

@@ -33,6 +33,7 @@ typedef struct object {
 
 typedef struct param {
 	int 		objects_len;
+	int 		objects_off;
 	object_t 	*objects;
 	int 		heigth;
 	int 		width;
