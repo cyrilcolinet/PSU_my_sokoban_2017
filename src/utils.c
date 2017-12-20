@@ -8,6 +8,34 @@
 # include "my.h"
 # include "sokoban.h"
 
+param_t *init_parameters(void)
+{
+	param_t *param = my_malloc(sizeof(*param));
+
+	param->objects = NULL;
+	param->objects_len = 0;
+
+	return (param);
+}
+
+void add_object(param_t *param, type_e type, int x, int y)
+{
+	object_t *obj = my_malloc(sizeof(*obj));
+
+	obj->type = type;
+	obj->x = x;
+	obj->y = y;
+	param->objects[param->objects_len] = *obj;
+	param->objects_len++;
+	free(obj);
+}
+
+void destroy(param_t *param)
+{
+	free(param->objects);
+	free(param);
+}
+
 void display_help(void)
 {
 	my_putstr("USAGE:\n");
