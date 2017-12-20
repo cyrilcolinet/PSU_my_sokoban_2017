@@ -8,13 +8,9 @@
 # include "my.h"
 # include "sokoban.h"
 
-void map_reading(param_t *param, size_t len, char *line, int y)
+void map_reading(param_t *param, char *line, int y)
 {
-	for (int x = 0; x <= len; x++)
-		if (line[x] == 'P' || line[x] == 'O' || line[x] == 'X')
-			param->objects_len++;
-
-	for (int x = 0; x <= len; x++) {
+	for (int x = 0; x <= my_strlen(line); x++) {
 		if (line[x] == 'P') add_object(param, player, x, y);
 		if (line[x] == 'X') add_object(param, tub, x, y);
 		if (line[x] == 'O') add_object(param, goal, x, y);
@@ -23,30 +19,58 @@ void map_reading(param_t *param, size_t len, char *line, int y)
 	printw(line);
 }
 
+fileopt_t *get_file(param_t *param, char *file)
+{
+	fileopt_t *fopt = my_malloc(sizeof(*fopt));
+
+	fopt->file = fopen(file, "r");
+	fopt->line = NULL;
+	fopt->len = 0;
+	fopt->read = -1;
+
+	if (fopt->file == NULL) {
+		destroy(param);
+		my_puterr("Error while reading file.\n", true);
+	}
+
+	return (fopt);
+}
+
+void count_objects(param_t *param, char *line)
+{
+	for (int x = 0; x <= my_strlen(line); x++)
+		if (line[x] == 'P' || line[x] == 'O' || line[x] == 'X')
+			param->objects_len += 1;
+}
+
 void display_map(param_t *param, char *filename)
 {
-	FILE *file = fopen(filename, "r");
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read = -1;
 	int y = 0;
+	fileopt_t *fopt = get_file(param, filename);
 
-	if (file == NULL)
-		my_puterr("Error while reading file.\n", true);
+	while ((fopt->read = getline(&fopt->line, &fopt->len, fopt->file)) != -1)
+		count_objects(param, fopt->line);
 
-	while ((read = getline(&line, &len, file)) != -1)
-		map_reading(param, len, line, y++);
+	fclose(fopt->file);
+	free(fopt);
+	fopt = get_file(param, filename);
+	param->objects = my_malloc(sizeof(*param->objects) * param->objects_len);
+
+	while ((fopt->read = getline(&fopt->line, &fopt->len, fopt->file)) != -1)
+		map_reading(param, fopt->line, y++);
+
+	fclose(fopt->file);
+	free(fopt);
 }
 
 int sokoban_main(int ac, char **av)
 {
 	param_t *param = init_parameters();
 
-	check_args(ac, av);
+	check_args(param, ac, av);
 	initscr();
 	display_map(param, av[1]);
 	getch();
-	endwin();
 	destroy(param);
 
 	return (0);
