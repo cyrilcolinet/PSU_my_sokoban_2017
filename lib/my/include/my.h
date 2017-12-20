@@ -8,6 +8,8 @@
 #ifndef MY_H_
 #define MY_H_
 
+# include <stdbool.h>
+
 /**
 ** Check if number is negative or  positive
 ** @param (int) nb
@@ -261,9 +263,10 @@ void my_sort_int_array(int *array, int size);
 /**
 ** Print error (on the stderr output)
 ** @param (char) *str
+** @param (bool) close
 ** @return (void)
 **/
-void my_puterr(char *str);
+void my_puterr(char *str, bool close);
 
 /**
 ** Malloc own (exit wen malloc failed)

@@ -12,7 +12,7 @@ param_t *init_parameters(void)
 {
 	param_t *param = my_malloc(sizeof(*param));
 
-	param->objects = NULL;
+	param->objects = my_malloc(sizeof(*param->objects));
 	param->objects_len = 0;
 
 	return (param);
@@ -20,14 +20,9 @@ param_t *init_parameters(void)
 
 void add_object(param_t *param, type_e type, int x, int y)
 {
-	object_t *obj = my_malloc(sizeof(*obj));
-
-	obj->type = type;
-	obj->x = x;
-	obj->y = y;
-	param->objects[param->objects_len] = *obj;
-	param->objects_len++;
-	free(obj);
+	param->objects[param->objects_len].type = type;
+	param->objects[param->objects_len].x = x;
+	param->objects[param->objects_len].y = y;
 }
 
 void destroy(param_t *param)
@@ -48,8 +43,7 @@ void display_help(void)
 void check_args(int ac, char **av)
 {
 	if (ac != 2) {
-		my_puterr("Usage: ./my_sokoban [-h] <map>\n");
-		exit(84);
+		my_puterr("Usage: ./my_sokoban [-h] <map>\n", true);
 	} else {
 		if (av[1][0] == '-' && av[1][1] == 'h') {
 			display_help();

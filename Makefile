@@ -13,7 +13,7 @@ SRC 			= src/sokoban.c 			\
 				  src/main.c 				\
 				  src/utils.c
 
-CFLAGS 			= -Wall -Wextra -Werror -I./include -g3
+CFLAGS 			= -Wall -Wextra -I./include -g3
 
 EXTRA_FLAGS 	= -L./lib/ -lmy -g3 -lncurses
 

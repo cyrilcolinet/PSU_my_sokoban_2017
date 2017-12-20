@@ -29,9 +29,9 @@ typedef struct param {
 	object_t 	*objects;
 } param_t;
 
-void 		map_reading(char **line, size_t *len, FILE *file, ssize_t read);
+void 		map_reading(param_t *param, size_t len, char *line, int y);
 int 		sokoban_main(int ac, char **av);
-void 		display_map(char *filename);
+void 		display_map(param_t *param, char *filename);
 
 param_t 	*init_parameters(void);
 void 		add_object(param_t *param, type_e type, int x, int y);
