@@ -28,7 +28,10 @@ void add_object(param_t *param, type_e type, int x, int y)
 void destroy(param_t *param)
 {
 	endwin();
-	free(param->objects);
+
+	if (param->objects != NULL)
+		free(param->objects);
+	
 	free(param);
 }
 

@@ -37,6 +37,8 @@ typedef struct param {
 } param_t;
 
 void 		map_reading(param_t *param, char *line, int y);
+fileopt_t 	*get_file(param_t *param, char *file);
+void 		count_objects(param_t *param, char *line);
 int 		sokoban_main(int ac, char **av);
 void 		display_map(param_t *param, char *filename);
 
