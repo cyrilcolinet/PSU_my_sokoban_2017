@@ -14,6 +14,8 @@ param_t *init_parameters(void)
 
 	param->objects = NULL;
 	param->objects_len = 0;
+	param->heigth = 0;
+	param->width = 0;
 
 	return (param);
 }
@@ -31,7 +33,7 @@ void destroy(param_t *param)
 
 	if (param->objects != NULL)
 		free(param->objects);
-	
+
 	free(param);
 }
 

@@ -38,9 +38,13 @@ fileopt_t *get_file(param_t *param, char *file)
 
 void count_objects(param_t *param, char *line)
 {
-	for (int x = 0; x <= my_strlen(line); x++)
-		if (line[x] == 'P' || line[x] == 'O' || line[x] == 'X')
+	for (int x = 0; x <= my_strlen(line); x++) {
+		if (line[x] == 'P' || line[x] == 'O' || line[x] == 'X') {
 			param->objects_len += 1;
+		}
+
+		param->width = x;
+	}
 }
 
 void display_map(param_t *param, char *filename)
@@ -59,6 +63,7 @@ void display_map(param_t *param, char *filename)
 	while ((fopt->read = getline(&fopt->line, &fopt->len, fopt->file)) != -1)
 		map_reading(param, fopt->line, y++);
 
+	param->heigth = y - 1;
 	fclose(fopt->file);
 	free(fopt);
 }

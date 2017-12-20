@@ -34,6 +34,8 @@ typedef struct object {
 typedef struct param {
 	int 		objects_len;
 	object_t 	*objects;
+	int 		heigth;
+	int 		width;
 } param_t;
 
 void 		map_reading(param_t *param, char *line, int y);
@@ -47,5 +49,7 @@ void 		add_object(param_t *param, type_e type, int x, int y);
 void 		destroy(param_t *param);
 void 		display_help(void);
 void 		check_args(param_t *param, int ac, char **av);
+
+void 		check_map_format(param_t *param);
 
 # endif

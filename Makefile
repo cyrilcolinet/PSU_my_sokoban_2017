@@ -11,7 +11,8 @@ NAME 			= my_sokoban
 
 SRC 			= src/sokoban.c 			\
 				  src/main.c 				\
-				  src/utils.c
+				  src/utils.c 				\
+				  src/map_utils.c
 
 CFLAGS 			= -Wall -Wextra -I./include -g3
 
