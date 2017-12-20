@@ -48,7 +48,7 @@ void display_help(void)
 	my_putstr("\t./my_sokoban [-h] <map>\n\n");
 	my_putstr("DESCRIPTION:\n");
 	my_putstr("\t-h\tDisplay help page (this page)\n");
-	my_putstr("\t<map>\tFile thats represents wareouse map\n");
+	my_putstr("\t<map>\tFile thats represents warehouse map\n");
 }
 
 void check_args(param_t *param, int ac, char **av)
