@@ -11,11 +11,12 @@
 void map_reading(param_t *param, char *line, int y)
 {
 	for (int x = 0; x <= my_strlen(line); x++) {
-		if (line[x] == 'P') add_object(param, player, x, y);
-		if (line[x] == 'X') add_object(param, tub, x, y);
-		if (line[x] == 'O') add_object(param, goal, x, y);
+		if (line[x] == 'P') add_object(param, t_player, x, y);
+		if (line[x] == 'X') add_object(param, t_tub, x, y);
+		if (line[x] == 'O') add_object(param, t_goal, x, y);
 	}
 
+	//print_centered(line);
 	printw(line);
 }
 
@@ -66,6 +67,7 @@ void display_map(param_t *param, char *filename)
 	param->heigth = y - 1;
 	fclose(fopt->file);
 	free(fopt);
+	check_map_format(param);
 }
 
 int sokoban_main(int ac, char **av)
@@ -75,6 +77,10 @@ int sokoban_main(int ac, char **av)
 	check_args(param, ac, av);
 	initscr();
 	display_map(param, av[1]);
+	keypad(stdscr, true);
+	noecho();
+	curs_set(0);
+	game(param);
 	getch();
 	destroy(param);
 

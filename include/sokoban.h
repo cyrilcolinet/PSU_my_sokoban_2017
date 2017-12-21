@@ -14,8 +14,10 @@
 # include <ncurses.h>
 # include <stdlib.h>
 
+typedef struct winsize winsize_t;
+
 typedef enum type {
-	tub, player, goal
+	t_tub, t_player, t_goal
 } type_e;
 
 typedef struct file_opt {
@@ -37,6 +39,7 @@ typedef struct param {
 	object_t 	*objects;
 	int 		heigth;
 	int 		width;
+	//winsize_t 	win_size;
 } param_t;
 
 void 		map_reading(param_t *param, char *line, int y);
