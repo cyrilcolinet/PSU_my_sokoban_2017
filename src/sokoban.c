@@ -68,6 +68,7 @@ void display_map(param_t *param, char *filename)
 	fclose(fopt->file);
 	free(fopt);
 	check_map_format(param);
+	param->map = get_map_content(param, filename);
 }
 
 int sokoban_main(int ac, char **av)

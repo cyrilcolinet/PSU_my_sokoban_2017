@@ -17,6 +17,8 @@ param_t *init_parameters(void)
 	param->heigth = 0;
 	param->width = 0;
 	param->objects_off = 0;
+	param->map = NULL;
+	param->original = NULL;
 
 	return (param);
 }
@@ -38,6 +40,16 @@ void destroy(param_t *param)
 
 	if (param->objects != NULL)
 		free(param->objects);
+
+	if (param->map != NULL && param->original != NULL) {
+		for (int i = 0; i < param->heigth; i++) {
+			free(param->map[i]);
+			free(param->original[i]);
+		}
+
+		free(param->map);
+		free(param->original);
+	}
 
 	free(param);
 }

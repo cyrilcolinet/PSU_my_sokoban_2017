@@ -9,8 +9,6 @@
 
 void game (param_t *param)
 {
-	int key = getch();
-
-//	if (key == KEY_Q)
+	movement_management(param);
 
 }

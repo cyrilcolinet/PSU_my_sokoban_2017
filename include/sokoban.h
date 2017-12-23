@@ -39,7 +39,8 @@ typedef struct param {
 	object_t 	*objects;
 	int 		heigth;
 	int 		width;
-	//winsize_t 	win_size;
+	char 		**original;
+	char 		**map;
 } param_t;
 
 void 		map_reading(param_t *param, char *line, int y);
@@ -55,5 +56,14 @@ void 		display_help(void);
 void 		check_args(param_t *param, int ac, char **av);
 
 void 		check_map_format(param_t *param);
+void 		print_centered(char *line);
+char 		**get_map_content(param_t *param, char *file);
+
+void 		movement_management(param_t *param);
+void 		move_right(param_t *param);
+void 		move_left(param_t *param);
+void 		move_top(param_t *param);
+void 		move_bottom(param_t *param);
+
 
 # endif
