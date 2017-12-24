@@ -20,6 +20,7 @@ param_t *init_parameters(void)
 	param->map = NULL;
 	param->leaved = false;
 	param->original = NULL;
+	param->leaved_reason = NULL;
 
 	return (param);
 }
@@ -50,6 +51,11 @@ void destroy(param_t *param)
 
 		free(param->map);
 		free(param->original);
+	}
+
+	if (param->leaved_reason != NULL) {
+		my_putstr(param->leaved_reason);
+		my_putchar('\n');
 	}
 
 	free(param);

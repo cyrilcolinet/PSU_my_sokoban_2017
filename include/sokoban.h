@@ -42,6 +42,7 @@ typedef struct param {
 	char 		**original;
 	char 		**map;
 	bool 		leaved;
+	char 		*leaved_reason;
 } param_t;
 
 void 		map_reading(param_t *param, char *line, int y);
