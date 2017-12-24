@@ -10,14 +10,15 @@
 
 void map_reading(param_t *param, char *line, int y)
 {
-	for (int x = 0; x <= my_strlen(line); x++) {
-		if (line[x] == 'P') add_object(param, t_player, x, y);
-		if (line[x] == 'X') add_object(param, t_tub, x, y);
-		if (line[x] == 'O') add_object(param, t_goal, x, y);
+	for (int x = 1; x <= my_strlen(line); x++) {
+		if (line[x] == 'P') {
+			add_object(param, t_player, x, y);
+		} else if (line[x] == 'X') {
+			add_object(param, t_tub, x, y);
+		} else if (line[x] == 'O') {
+			add_object(param, t_goal, x, y);
+		}
 	}
-
-	//print_centered(line);
-	printw(line);
 }
 
 fileopt_t *get_file(param_t *param, char *file)
@@ -48,7 +49,7 @@ void count_objects(param_t *param, char *line)
 	}
 }
 
-void display_map(param_t *param, char *filename)
+void configure_map(param_t *param, char *filename)
 {
 	int y = 0;
 	fileopt_t *fopt = get_file(param, filename);
@@ -64,7 +65,7 @@ void display_map(param_t *param, char *filename)
 	while ((fopt->read = getline(&fopt->line, &fopt->len, fopt->file)) != -1)
 		map_reading(param, fopt->line, y++);
 
-	param->heigth = y - 1;
+	param->heigth = y;
 	fclose(fopt->file);
 	free(fopt);
 	check_map_format(param);
@@ -77,12 +78,11 @@ int sokoban_main(int ac, char **av)
 
 	check_args(param, ac, av);
 	initscr();
-	display_map(param, av[1]);
+	configure_map(param, av[1]);
 	keypad(stdscr, true);
 	noecho();
 	curs_set(0);
 	game(param);
-	getch();
 	destroy(param);
 
 	return (0);

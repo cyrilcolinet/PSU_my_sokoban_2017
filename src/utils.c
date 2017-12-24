@@ -18,6 +18,7 @@ param_t *init_parameters(void)
 	param->width = 0;
 	param->objects_off = 0;
 	param->map = NULL;
+	param->leaved = false;
 	param->original = NULL;
 
 	return (param);

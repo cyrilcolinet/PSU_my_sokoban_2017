@@ -72,12 +72,13 @@ int *get_player_position(param_t *param)
 {
 	int *pos = my_malloc(sizeof(*pos) * 2);
 
-	for (int i = 0; i <= param->objects_len; i++)
-		if (param->objects[i].type == t_player) {
-			pos[0] = param->objects[i].x;
-			pos[1] = param->objects[i].y;
-			return (pos);
-		}
+	for (int row = 0; row < param->heigth; row++)
+		for (int col = 0; col < my_strlen(param->map[row]); col++)
+			if (param->map[row][col] == 'P') {
+				pos[0] = col;
+				pos[1] = row;
+				return (pos);
+			}
 
 	my_puterr("Unable to get player position.\n", true);
 	return (NULL);

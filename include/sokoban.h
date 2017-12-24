@@ -41,13 +41,14 @@ typedef struct param {
 	int 		width;
 	char 		**original;
 	char 		**map;
+	bool 		leaved;
 } param_t;
 
 void 		map_reading(param_t *param, char *line, int y);
 fileopt_t 	*get_file(param_t *param, char *file);
 void 		count_objects(param_t *param, char *line);
 int 		sokoban_main(int ac, char **av);
-void 		display_map(param_t *param, char *filename);
+void 		configure_map(param_t *param, char *filename);
 
 param_t 	*init_parameters(void);
 void 		add_object(param_t *param, type_e type, int x, int y);
@@ -57,13 +58,19 @@ void 		check_args(param_t *param, int ac, char **av);
 
 void 		check_map_format(param_t *param);
 void 		print_centered(char *line);
+void 		duplicate_original_map(param_t *param, char **map);
 char 		**get_map_content(param_t *param, char *file);
+int 		*get_player_position(param_t *param);
 
-void 		movement_management(param_t *param);
-void 		move_right(param_t *param);
-void 		move_left(param_t *param);
-void 		move_top(param_t *param);
-void 		move_bottom(param_t *param);
+void 		movement_management(param_t *param, int key);
+void 		move_right(param_t *param, int *pos);
+void 		move_left(param_t *param, int *pos);
+void 		move_top(param_t *param, int *pos);
+void 		move_bottom(param_t *param, int *pos);
 
+void 		display_map_content(param_t *param);
+bool 		check_terminated_game(param_t *param);
+bool 		check_blocked_game(param_t *param);
+void 		game(param_t *param);
 
 # endif
