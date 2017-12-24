@@ -78,10 +78,10 @@ void move_top(param_t *param, int *pos)
 		return;
 
 	if (map[(pos[1] - 1)][pos[0]] == 'X') {
-		if (map[(pos[1] - 2)][pos[0]] != '#' && map[(pos[0] - 2)][pos[0]] != 'X') {
+		if (map[(pos[1] - 2)][pos[0]] != '#' && map[(pos[1] - 2)][pos[0]] != 'X') {
 			param->map[(pos[1] - 1)][pos[0]] = 'P';
 
-			if (ori[pos[1]] == 'O') param->map[pos[1]][pos[0]] = 'O';
+			if (ori[pos[0]] == 'O') param->map[pos[1]][pos[0]] = 'O';
 			else param->map[pos[1]][pos[0]] = ' ';
 
 			param->map[(pos[1] - 2)][pos[0]] = 'X';
@@ -89,7 +89,7 @@ void move_top(param_t *param, int *pos)
 	} else {
 		param->map[(pos[1] - 1)][pos[0]] = 'P';
 
-		if (ori[pos[1]] == 'O') param->map[pos[1]][pos[0]] = 'O';
+		if (ori[pos[0]] == 'O') param->map[pos[1]][pos[0]] = 'O';
 		else param->map[pos[1]][pos[0]] = ' ';
 	}
 }
@@ -103,10 +103,10 @@ void move_bottom(param_t *param, int *pos)
 		return;
 
 	if (map[(pos[1] + 1)][pos[0]] == 'X') {
-		if (map[(pos[1] + 2)][pos[0]] != '#' && map[(pos[0] + 2)][pos[0]] != 'X') {
+		if (map[(pos[1] + 2)][pos[0]] != '#' && map[(pos[1] + 2)][pos[0]] != 'X') {
 			param->map[(pos[1] + 1)][pos[0]] = 'P';
 
-			if (ori[pos[1]] == 'O') param->map[pos[1]][pos[0]] = 'O';
+			if (ori[pos[0]] == 'O') param->map[pos[1]][pos[0]] = 'O';
 			else param->map[pos[1]][pos[0]] = ' ';
 
 			param->map[(pos[1] + 2)][pos[0]] = 'X';
@@ -114,7 +114,7 @@ void move_bottom(param_t *param, int *pos)
 	} else {
 		param->map[(pos[1] + 1)][pos[0]] = 'P';
 
-		if (ori[pos[1]] == 'O') param->map[pos[1]][pos[0]] = 'O';
+		if (ori[pos[0]] == 'O') param->map[pos[1]][pos[0]] = 'O';
 		else param->map[pos[1]][pos[0]] = ' ';
 	}
 }

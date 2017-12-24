@@ -34,14 +34,30 @@ bool check_terminated_game(param_t *param)
 
 bool check_blocked_game(param_t *param)
 {
+	char **map = param->map;
+
+	for (int i = 0; i < param->heigth; i++) {
+		for (int j = 0; j < my_strlen(map[i]); j++) {
+			if (map[i][j] == 'X') {
+				if (map[i + 1][j] == '#' || map[i - 1][j] == '#') {
+					if (map[i][j + 1] == '#' || map[i][j - 1] == '#')
+						return (true);
+				} else if (map[i][j + 1] == '#' || map[i][j + 1] == '#') {
+					if (map[i + 1][j] == '#' || map[i - 1][j] == '#')
+						return (true);
+				}
+			}
+		}
+	}
+
 	return (false);
 }
 
-void game (param_t *param)
+void game(param_t *param)
 {
 	int key = 0;
 	
-	while (!check_terminated_game(param) && !param->leaved) {
+	while (!check_terminated_game(param) && !check_terminated_game(param) && !param->leaved) {
 		display_map_content(param);
 		key = getch();
 		movement_management(param, key);
