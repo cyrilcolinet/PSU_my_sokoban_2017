@@ -19,7 +19,27 @@ void movement_management(param_t *param, int key)
 
 void move_right(param_t *param, int *pos)
 {
+	char *map = param->map[pos[1]];
+	char *ori = param->original[pos[1]];
 
+	if (pos[0] > 0 && map[(pos[0] + 1)] == '#')
+		return;
+
+	if (map[(pos[0] + 1)] == 'X') {
+		if (map[(pos[0] + 2)] != '#' && map[(pos[0] + 2)] != 'X') {
+			param->map[pos[1]][(pos[0] + 1)] = 'P';
+
+			if (ori[pos[0]] == 'O') param->map[pos[1]][pos[0]] = 'O';
+			else param->map[pos[1]][pos[0]] = ' ';
+
+			param->map[pos[1]][(pos[0] + 2)] = 'X';
+		}
+	} else {
+		param->map[pos[1]][(pos[0] + 1)] = 'P';
+
+		if (ori[pos[0]] == 'O') param->map[pos[1]][pos[0]] = 'O';
+		else param->map[pos[1]][pos[0]] = ' ';
+	}
 }
 
 void move_left(param_t *param, int *pos)
@@ -44,7 +64,6 @@ void move_left(param_t *param, int *pos)
 
 		if (ori[pos[0]] == 'O') param->map[pos[1]][pos[0]] = 'O';
 		else param->map[pos[1]][pos[0]] = ' ';
-
 	}
 }
 
