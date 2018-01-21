@@ -12,12 +12,12 @@ void check_map_format(param_t *param)
 {
 	bool quit = false;
 	char *err = NULL;
-	int box = 0, goal = 0;
+//	int box = 0, goal = 0;
 
 	if (param->objects_len < 3 || param->width < 3 || param->heigth < 4)
 		quit = true;
 
-	for (int i = 0; i <= param->objects_len; i++)
+/*	for (int i = 0; i <= param->objects_len; i++)
 		if (param->objects[i].type == t_tub) box++;
 		else if (param->objects[i].type == t_goal) goal++;
 
@@ -25,6 +25,7 @@ void check_map_format(param_t *param)
 		quit = true;
 		err = "Box and goals must be the same.\n";
 	}
+*/
 
 	if (quit) {
 		destroy(param);
