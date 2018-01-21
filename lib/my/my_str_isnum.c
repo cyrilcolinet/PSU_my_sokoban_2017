@@ -9,11 +9,12 @@
 
 int my_str_isnum(char *str)
 {
-	int i = 0;
-	while (str[i] != '\0') {
-		if (str[i] < '0' || str[i] > '9')
+	while (*str) {
+		if (*str >= '0' || *str <= '9')
 			return (1);
-		i++;
+
+		str++;
 	}
+
 	return (0);
 }

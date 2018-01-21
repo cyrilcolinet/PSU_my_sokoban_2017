@@ -5,16 +5,15 @@
 ## Makefile for lib
 ##
 
-all:			libmy.a
+all:		libmy.a
 
 libmy.a:
-				make -C ./my
+			make -C ./my
 
 clean:
-				rm -f *.o
+			rm -f *.o
 
-fclean:			
-				rm -f *.a
-				make fclean -C ./my
+fclean:
+			make fclean -C ./my
 
-re:				fclean all
+re:			fclean all

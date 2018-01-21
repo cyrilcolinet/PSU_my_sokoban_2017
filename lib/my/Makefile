@@ -11,7 +11,7 @@ NAME 				= libmy.a
 
 SRC 				= my_atoi.c 					\
 					  my_compute_power_rec.c 		\
-					  my_putnbr_base.c 				\
+					  my_put_nbr_base.c				\
 					  my_compute_square_root.c 		\
 					  my_is_prime.c 				\
 					  my_find_prime_sup.c 			\
@@ -37,6 +37,7 @@ SRC 				= my_atoi.c 					\
 					  my_strcat.c 					\
 					  my_strcmp.c 					\
 					  my_strcpy.c 					\
+					  my_strncmp.c					\
 					  my_strdup.c 					\
 					  my_strlen.c 					\
 					  my_strlowcase.c 				\
@@ -46,7 +47,15 @@ SRC 				= my_atoi.c 					\
 					  my_strtok.c 					\
 					  my_strupcase.c 				\
 					  my_swap.c 					\
-					  my_trim.c 
+					  my_trim.c 					\
+					  my_realloc.c 					\
+					  my_getline.c 					\
+					  my_printf_flags_hexadecimal.c \
+					  my_printf_flags_number.c 		\
+					  my_printf_flags_string.c 		\
+					  my_printf_flags_unsigned.c	\
+					  my_printf_utils.c 			\
+					  my_printf.c
 
 CFLAGS 				= -Wall -Wextra -Werror -I./include
 

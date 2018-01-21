@@ -29,7 +29,7 @@ static void print_hex(int nbr, int char_count)
 	}
 	if (nbr < 0)
 		nbr = -nbr;
-	my_putnbr_base(nbr, hex_base);
+	my_put_nbr_base(nbr, hex_base);
 }
 
 static void print_hex_str(char *beg, char *end)

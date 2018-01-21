@@ -5,8 +5,12 @@
 ** My personnal library header
 */
 
-#ifndef MY_H_
-#define MY_H_
+# ifndef MY_H_
+# define MY_H_
+
+# ifndef READ_SIZE
+# define READ_SIZE (128)
+# endif
 
 # include <stdbool.h>
 
@@ -303,6 +307,29 @@ char **my_strtok(char *str, char *delimiter);
 ** @param (char *) base
 ** @return (void)
 **/
-void my_putnbr_base(int nbr, char *base);
+void my_put_nbr_base(int nbr, char *base);
 
-#endif
+/**
+** Realloc char pointer
+** @param (char *) ptr
+** @param (unsigned int) size
+** @return (char *) new_ptr
+**/
+char *my_realloc(char *ptr, unsigned int size);
+
+/**
+** Get the next line of file description
+** @param (int) fdesc
+** @return (char *) line
+**/
+char *my_getline(int fdesc);
+
+/**
+** Printf function recoded
+** @param (char *) format
+** @param (...) va_list <stdarg.h>
+** @return (void)
+**/
+void my_printf(char *format, ...);
+
+# endif

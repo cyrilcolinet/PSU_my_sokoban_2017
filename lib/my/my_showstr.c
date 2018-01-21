@@ -19,7 +19,7 @@ void my_showstr(char *str)
 			my_putchar('\\');
 			if (str[i] < 16)
 				my_putchar('0');
-			my_putnbr_base(str[i], base);
+			my_put_nbr_base(str[i], base);
 		} else
 			my_putchar(str[i]);
 		i++;
