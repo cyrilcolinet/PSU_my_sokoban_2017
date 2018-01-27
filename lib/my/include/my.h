@@ -13,6 +13,9 @@
 # endif
 
 # include <stdbool.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 /**
 ** Check if number is negative or  positive
@@ -120,12 +123,22 @@ int my_strncmp(char *s1, char *s2, int n);
 int my_str_isalpha(char *str);
 
 /**
+** Count delimer parts
+** @param (char *) str
+** @param (char *) delim
+** @return (int) - Return the count of parts delimter by a delimier
+** specified in argument...
+**/
+int my_countwords(char *str, char delim);
+
+/**
 ** Check if string contains ONLY numeric characters
 ** @param (char const) *str
+** @param (bool) neg
 ** @return (int) - Return 1 if the string contains only
 ** numeric characters, and 0 otherwise
 **/
-int my_str_isnum(char *str);
+int my_str_isnum(char *str, bool neg);
 
 /**
 ** Check if the string contains only lowercase characters
@@ -296,10 +309,10 @@ char **my_str_to_word_array(char *str);
 /**
 ** Cut string with delimiter given as parameter
 ** @param (char *) str
-** @param (char *) delimiter
+** @param (char) delim
 ** return (char **) - Return word array in double pointer char
 **/
-char **my_strtok(char *str, char *delimiter);
+char **my_strtok(char *str, char delim);
 
 /**
 ** Print number in defined base
@@ -315,7 +328,7 @@ void my_put_nbr_base(int nbr, char *base);
 ** @param (unsigned int) size
 ** @return (char *) new_ptr
 **/
-char *my_realloc(char *ptr, unsigned int size);
+char *my_realloc(void *ptr, size_t prev_size, size_t new_size);
 
 /**
 ** Get the next line of file description
@@ -331,5 +344,27 @@ char *my_getline(int fdesc);
 ** @return (void)
 **/
 void my_printf(char *format, ...);
+
+/**
+** Free pointer
+** @param (void) *ptr
+**/
+void my_free(void **ptr);
+
+char *my_strconfigure(unsigned int size);
+
+char *my_strjoin(char *str1, char *str2);
+
+char *my_strjoin_clear(char *str1, char *str2, int free_both);
+
+char *my_strjoin_char(char *str, char delim);
+
+bool my_strstartswith(char *str1, char *str2);
+
+bool my_strendswith(char *str1, char *str2);
+
+char *my_strchr(char *str, char delim);
+
+void my_freetab(char **arr);
 
 # endif

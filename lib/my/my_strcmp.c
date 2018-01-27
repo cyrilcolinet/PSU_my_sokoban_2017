@@ -9,14 +9,10 @@
 
 int my_strcmp(char *s1, char *s2)
 {
-	while (*s1 && *s2) {
-		if (*s1 != *s2) {
-			if (*s1 > *s2)
-				return (-1);
-			return (1);
-		}
-		s1++;
-		s2++;
-	}
-	return (*s2 - *s1);
+	int i = 0;
+
+	while (*(s1 + i) && *(s1 + i) == *(s2 + i))
+		i++;
+
+	return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
 }

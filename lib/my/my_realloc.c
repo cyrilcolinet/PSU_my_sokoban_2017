@@ -8,29 +8,53 @@
 # include <stdlib.h>
 # include "my.h"
 
-char *my_realloc(char *ptr, unsigned int size)
+static void	my_emptystr(void *s, size_t n)
 {
-	char *new_ptr;
-	unsigned int ch = 0;
+	char *ptr;
+	size_t i;
 
-	if (ptr == NULL || size < 1)
+	if (!n)
+		return;
+	ptr = s;
+	i = 0;
+	while (i < n)
+		*(ptr + i++) = 0;
+}
+
+static void	*my_memalloc(size_t size)
+{
+	void *mem;
+
+	if (!(mem = malloc(size)))
 		return (NULL);
 
-	new_ptr = malloc(sizeof(*new_ptr) * (size + 1));
+	my_emptystr(mem, size);
+	return (mem);
+}
 
-	if (new_ptr == NULL)
+static void	*my_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	i = -1;
+
+	while (++i < n)
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+
+	return (dst);
+}
+
+char *my_realloc(void *ptr, size_t prev_size, size_t new_size)
+{
+	void *new;
+
+	if (!ptr)
 		return (NULL);
 
-	while (ch != size && ptr[ch] != 0) {
-		new_ptr[ch] = ptr[ch];
-		ch++;
+	if (!(new = my_memalloc(new_size))) {
+		free(ptr);
+		return (NULL);
 	}
 
-	if (ptr[ch])
-		while (ch < size)
-			new_ptr[ch++] = 0;
-
-	new_ptr[ch] = 0;
+	my_memcpy(new, ptr, prev_size < new_size ? prev_size : new_size);
 	free(ptr);
-	return (new_ptr);
+	return (new);
 }

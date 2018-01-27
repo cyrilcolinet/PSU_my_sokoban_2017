@@ -52,7 +52,7 @@ char *my_getline(int fdesc)
 
 	while (line[i]) {
 		if (i % READ_SIZE == 0) {
-			line = my_realloc(line, i + READ_SIZE + 1);
+			line = my_realloc(line, i + READ_SIZE, i + READ_SIZE + 1);
 
 			if (line == NULL)
 				return (return_freed(line, NULL));

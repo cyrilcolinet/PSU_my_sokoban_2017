@@ -5,6 +5,12 @@
 ## Makefile libmy
 ##
 
+## Color variables
+
+SUCCESS				= /bin/echo -e "\x1b[1m\x1b[33m\#\#\x1b[32m $1\x1b[0m"
+
+## Compilation variables
+
 .PHONY				: all, clean, fclean, re
 
 NAME 				= libmy.a
@@ -44,6 +50,7 @@ SRC 				= my_atoi.c 					\
 					  my_strncat.c 					\
 					  my_strncpy.c 					\
 					  my_strstr.c 					\
+					  my_countwords.c 		 		\
 					  my_strtok.c 					\
 					  my_strupcase.c 				\
 					  my_swap.c 					\
@@ -55,9 +62,18 @@ SRC 				= my_atoi.c 					\
 					  my_printf_flags_string.c 		\
 					  my_printf_flags_unsigned.c	\
 					  my_printf_utils.c 			\
-					  my_printf.c
+					  my_printf.c 					\
+					  my_free.c 					\
+					  my_strconfigure.c 			\
+					  my_strjoin.c 					\
+					  my_strjoin_clear.c 			\
+					  my_strjoin_char.c 			\
+					  my_strendswith.c 				\
+					  my_strstartswith.c 			\
+					  my_strchr.c 					\
+					  my_freetab.c
 
-CFLAGS 				= -Wall -Wextra -Werror -I./include
+CFLAGS 				= -Wall -Wextra -I./include
 
 CC					= gcc
 
@@ -73,21 +89,24 @@ REMOTE_INCLUDE 		= ../../include/
 
 INCLUDE_FILE		= my.h
 
-OBJ 				= $(SRC:.c=.o)
+LIB_OBJ 			= $(SRC:.c=.o)
 
 all:				$(NAME)
 					$(CP) $(NAME) ../$(NAME)
 					$(CP) $(INCLUDE)/$(INCLUDE_FILE) $(REMOTE_INCLUDE)
+					@$(call SUCCESS, "Header\(s\) and static library\(ies\) copied.")
 
-$(NAME):			$(OBJ)
-					$(AR) $(NAME) $(OBJ)
+$(NAME):			$(LIB_OBJ)
+					$(AR) $(NAME) $(LIB_OBJ)
+					@$(call SUCCESS, "Library successfully compiled.")
 
 clean:
-					$(RM) $(OBJ)
+					$(RM) $(LIB_OBJ)
 
 fclean: 			clean
 					$(RM) ../$(NAME)
 					$(RM) $(NAME)
 					$(RM) $(REMOTE_INCLUDE)$(INCLUDE_FILE)
+					@$(call SUCCESS, "Library fully cleaned.")
 
 re: 				fclean all
