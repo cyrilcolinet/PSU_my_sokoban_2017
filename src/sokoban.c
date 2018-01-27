@@ -10,7 +10,9 @@
 
 void map_reading(param_t *param, char *line, int y)
 {
-	for (int x = 1; x <= my_strlen(line); x++) {
+	int x;
+
+	for (x = 1; x <= my_strlen(line); x++) {
 		if (line[x] == 'P') {
 			add_object(param, t_player, x, y);
 		} else if (line[x] == 'X') {
@@ -40,7 +42,9 @@ fileopt_t *get_file(param_t *param, char *file)
 
 void count_objects(param_t *param, char *line)
 {
-	for (int x = 0; x <= my_strlen(line); x++) {
+	int x;
+
+	for (x = 0; x <= my_strlen(line); x++) {
 		if (line[x] == 'P' || line[x] == 'O' || line[x] == 'X') {
 			param->objects_len += 1;
 		}

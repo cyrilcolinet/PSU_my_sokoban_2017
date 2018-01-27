@@ -36,7 +36,9 @@ void check_map_format(param_t *param)
 
 void print_centered(char *line)
 {
-    for (int i = 0; i < (132 - my_strlen(line)) / 2; i++)
+	int i = 0;
+
+    for (i = 0; i < (132 - my_strlen(line)) / 2; i++)
         printw(" ");
 
     printw("%s", line);
@@ -75,9 +77,10 @@ char **get_map_content(param_t *param, char *filename)
 int *get_player_position(param_t *param)
 {
 	int *pos = my_malloc(sizeof(*pos) * 2);
+	int row, col;
 
-	for (int row = 0; row < param->heigth; row++)
-		for (int col = 0; col < my_strlen(param->map[row]); col++)
+	for (row = 0; row < param->heigth; row++)
+		for (col = 0; col < my_strlen(param->map[row]); col++)
 			if (param->map[row][col] == 'P') {
 				pos[0] = col;
 				pos[1] = row;

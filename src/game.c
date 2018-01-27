@@ -10,9 +10,11 @@
 
 void display_map_content(param_t *param)
 {
+	int i;
+
 	clear();
 
-	for (int i = 0; i < param->heigth; i++)
+	for (i = 0; i < param->heigth; i++)
 		printw(param->map[i]);
 
 	refresh();
@@ -21,9 +23,10 @@ void display_map_content(param_t *param)
 bool check_terminated_game(param_t *param)
 {
 	char **ori = param->original;
+	int row, col;
 
-	for (int row = 0; row < param->heigth; row++) {
-		for (int col = 0; param->map[row][col]; col++) {
+	for (row = 0; row < param->heigth; row++) {
+		for (col = 0; param->map[row][col]; col++) {
 			if (ori[row][col] == 'O' && param->map[row][col] != 'X') {
 				param->leaved_reason = "Vous avez gagné ! Bravoooo !";
 				return (false);
@@ -38,9 +41,10 @@ bool check_blocked_game(param_t *param)
 {
 	char **map = param->map;
 	char **ori = param->original;
+	int i, j;
 
-	for (int i = 0; i < param->heigth; i++)
-		for (int j = 0; j < my_strlen(map[i]); j++)
+	for (i = 0; i < param->heigth; i++)
+		for (j = 0; j < my_strlen(map[i]); j++)
 			if (map[i][j] == 'X' && ori[i][j] != 'O') {
 				if (map[i + 1][j] == '#' || map[i - 1][j] == '#') {
 					if (map[i][j + 1] == '#' || map[i][j - 1] == '#') {
