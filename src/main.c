@@ -9,5 +9,7 @@
 
 int main(int ac, char **av)
 {
-	return (sokoban_main(ac, av));
+	int res = sokoban_main(ac, av);
+
+	return (res);
 }

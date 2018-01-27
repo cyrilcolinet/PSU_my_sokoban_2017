@@ -44,13 +44,16 @@ void print_centered(char *line)
 
 void duplicate_original_map(param_t *param, char **map)
 {
-	char **ori = my_malloc(sizeof(*ori) * param->heigth);
+	char **ori = my_malloc(sizeof(*ori) * (param->heigth + 1));
+	int i;
 
-	for (int i = 0; i < param->heigth; i++) {
+	for (i = 0; i < param->heigth; i++) {
 		ori[i] = my_strdup(map[i]);
 	}
 
+	ori[param->heigth] = NULL;
 	param->original = ori;
+
 }
 
 char **get_map_content(param_t *param, char *filename)

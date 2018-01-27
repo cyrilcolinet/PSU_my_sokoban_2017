@@ -43,15 +43,8 @@ void destroy(param_t *param)
 	if (param->objects != NULL)
 		free(param->objects);
 
-	if (param->map != NULL && param->original != NULL) {
-		for (int i = 0; i < param->heigth; i++) {
-			free(param->map[i]);
-			free(param->original[i]);
-		}
-
-		free(param->map);
-		free(param->original);
-	}
+	my_freetab(param->map);
+	my_freetab(param->original);
 
 	if (param->leaved_reason != NULL) {
 		my_putstr(param->leaved_reason);

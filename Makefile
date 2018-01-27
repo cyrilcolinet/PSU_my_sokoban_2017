@@ -37,6 +37,7 @@ library:
 clean:
 				$(RM) $(OBJ)
 				$(RM) vgcore.*
+				make clean -C ./lib
 
 fclean: 		clean
 				$(RM) $(NAME)
