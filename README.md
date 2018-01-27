@@ -1,7 +1,6 @@
 # Sokoban - A warehouse keeper game
 
-[![Build Status](https://travis-ci.org/mrlizzard/PSU_minishell1_2017.svg?branch=master)](https://travis-ci.org/mrlizzard/PSU_minishell1_2017)
-[![codecov](https://codecov.io/gh/mrlizzard/PSU_minishell1_2017/branch/master/graph/badge.svg?token=SKCL9EDKjB)](https://codecov.io/gh/mrlizzard/PSU_minishell1_2017)
+[![Build Status](https://travis-ci.org/mrlizzard/PSU_my_sokoban_2017.svg?branch=master)](https://travis-ci.org/mrlizzard/PSU_my_sokoban_2017)
 
 - **Binary name:** my_sokoban
 - **Repository name:** PSU_my_sokoban_2017
