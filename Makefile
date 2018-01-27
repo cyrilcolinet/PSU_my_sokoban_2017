@@ -42,6 +42,7 @@ clean:
 fclean: 		clean
 				$(RM) $(NAME)
 				make fclean -C ./lib
+				rm -rf src/*.gc*
 
 re: 			fclean all
 
