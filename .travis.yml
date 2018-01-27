@@ -10,5 +10,8 @@ script:
 notifications:
   email: false
 
+before_install:
+  - sudo apt-get install libncurses5-dev libncursesw5-dev
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)

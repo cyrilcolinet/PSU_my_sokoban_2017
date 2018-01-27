@@ -16,7 +16,7 @@ SRC 			= src/sokoban.c 			\
 				  src/game.c 				\
 				  src/movements.c
 
-CFLAGS 			= -Wall -Wextra -I./include -g3
+CFLAGS 			= -Wall -Wextra -I./include --coverage
 
 EXTRA_FLAGS 	= -L./lib/ -lmy -g3 -lncurses
 
