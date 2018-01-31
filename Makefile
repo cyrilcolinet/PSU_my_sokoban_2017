@@ -42,6 +42,8 @@ DEBUG 			= -g3
 
 CFLAGS 			= -Wall -Wextra -I$(INC) $(DEBUG) --coverage
 
+LIB_FLAGS 		= -lmy -lncurses
+
 OBJ 			= $($SRC:.c=.o)
 
 ## Rules
@@ -58,7 +60,7 @@ $(BUILDDIR)%.o:	$(SRCDIR)%.c
 				$(CC) $(CFLAGS)   -c -o $@ $<
 
 $(NAME): 		$(BUILDOBJS)
-				$(CC) $(CFLAGS) -L$(LIBDIR) -lmy -lc_graph_prog -o $(NAME) $(BUILDOBJS) $(LIBDIR)/my/*.o $(LIBFT)
+				$(CC) $(CFLAGS) -L$(LIBDIR) $(LIB_FLAGS) -o $(NAME) $(BUILDOBJS) $(LIBDIR)/my/*.o $(LIBFT)
 				@$(call SUCCESS, "All objects files successfully regrouped in ./$(NAME) binary file.")
 
 $(LIBMY):
