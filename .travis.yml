@@ -4,11 +4,16 @@ group: stable
 
 os: linux
 
+dist: "debian"
+
 script:
   - make re
 
 notifications:
   email: false
+
+before_install:
+  - sudo apt-get install libncurses5-dev libncursesw5-dev ncurses
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
