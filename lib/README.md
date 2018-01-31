@@ -1,4 +1,4 @@
-# :shell: C Library - Used everything (only c projects)
+# :shell: C Library - Used everything (only c projects) [![Build Status](https://travis-ci.org/mrlizzard/CPE_my_library.svg?branch=master)](https://travis-ci.org/mrlizzard/CPE_my_library)
 
 This C library contains all the basic C functions like printf, strcat, etc...
 

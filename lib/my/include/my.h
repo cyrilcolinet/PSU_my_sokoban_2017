@@ -367,4 +367,6 @@ char *my_strchr(char *str, char delim);
 
 void my_freetab(char **arr);
 
+bool my_strequ(char *str1, char *str2);
+
 # endif

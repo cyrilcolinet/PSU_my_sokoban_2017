@@ -1,0 +1,16 @@
+language: c
+
+group: stable
+
+os: linux
+
+script:
+  - cd -
+  - make re
+
+before_install:
+  - cd ../
+  - mkdir -p include
+
+notifications:
+  email: false

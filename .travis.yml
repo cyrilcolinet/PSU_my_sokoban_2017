@@ -6,8 +6,6 @@ os: linux
 
 sudo: required
 
-
-
 dist: precise
 
 script:

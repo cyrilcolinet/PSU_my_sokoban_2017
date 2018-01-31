@@ -71,7 +71,8 @@ SRC 				= my_atoi.c 					\
 					  my_strendswith.c 				\
 					  my_strstartswith.c 			\
 					  my_strchr.c 					\
-					  my_freetab.c
+					  my_freetab.c 					\
+					  my_strequ.c
 
 CFLAGS 				= -Wall -Wextra -I./include
 

@@ -5,47 +5,76 @@
 ## Makefile with build project rule and units tests
 ##
 
-.PHONY			: all, fclean, clean, re, tests_run, library
+## Color variables
+
+SUCCESS			= /bin/echo -e "\x1b[1m\x1b[33m\#\#\x1b[32m $1\x1b[0m"
+
+## Compilation variables
 
 NAME 			= my_sokoban
 
-SRC 			= src/sokoban.c 			\
-				  src/main.c 				\
-				  src/utils.c 				\
-				  src/map_utils.c 			\
-				  src/game.c 				\
-				  src/movements.c
+SRCDIR 			= ./src/
 
-CFLAGS 			= -Wall -Wextra -I./include --coverage
+SRCNAMES 		= main.c 			\
+				  game.c 			\
+				  map_utils.c 		\
+				  movements.c 		\
+				  sokoban.c 		\
+				  uils.c
 
-EXTRA_FLAGS 	= -L./lib/ -lmy -g3 -lncurses
+SRC 			= $(addprefix $(SRCDIR), $(SRCNAMES))
+
+INC 			= ./include
+
+BUILDDIR 		= ./build/
+
+BUILDSUBDIR 	= $(shell cd $(SRCDIR) && find . -mindepth 1 -type d -printf '%p\n')
+
+BUILDOBJS 		= $(addprefix $(BUILDDIR), $(SRCNAMES:.c=.o))
+
+LIBDIR 			= ./lib/
+
+LIBMY 			= ./lib/libmy.a
 
 CC 				= gcc
 
-RM 				= rm -f
+DEBUG 			= -g3
 
-OBJ 			= $(SRC:.c=.o)
+CFLAGS 			= -Wall -Wextra -I$(INC) $(DEBUG) --coverage
 
-all: 			library $(NAME)
+OBJ 			= $($SRC:.c=.o)
 
-$(NAME):		$(OBJ)
-				$(CC) $(CFLAGS) $(EXTRA_FLAGS) $(OBJ) ./lib/my/*.o -o $(NAME)
+## Rules
 
-library:
-				make -C ./lib
+all: 			$(BUILDDIR) $(LIBMY) $(NAME)
+				@$(call SUCCESS, "Project successfully compiled.")
+				@clear
+
+$(BUILDDIR):
+				mkdir -p $(BUILDDIR)
+				$(foreach subdir, $(BUILDSUBDIR), $(shell mkdir -p build/$(subdir)))
+
+$(BUILDDIR)%.o:	$(SRCDIR)%.c
+				$(CC) $(CFLAGS)   -c -o $@ $<
+
+$(NAME): 		$(BUILDOBJS)
+				$(CC) $(CFLAGS) -L$(LIBDIR) -lmy -lc_graph_prog -o $(NAME) $(BUILDOBJS) $(LIBDIR)/my/*.o $(LIBFT)
+				@$(call SUCCESS, "All objects files successfully regrouped in ./$(NAME) binary file.")
+
+$(LIBMY):
+				make -C $(LIBDIR)
 
 clean:
-				$(RM) $(OBJ)
-				$(RM) vgcore.*
-				make clean -C ./lib
+				rm -rf $(BUILDDIR)
+				find -name '*.gc*' -delete -or -name 'vgcore.*' -delete
+				make -C $(LIBDIR) clean
+				@$(call SUCCESS, "Project fully cleaned.")
 
 fclean: 		clean
-				$(RM) $(NAME)
-				make fclean -C ./lib
-				rm -rf src/*.gc*
+				rm -rf $(NAME)
+				make -C $(LIBDIR) fclean
 
 re: 			fclean all
 
-tests_run:		re
-				@echo "Running units tests..."
-
+# Just in case those files exist in the root dir
+.PHONY			: all fclean clean re
