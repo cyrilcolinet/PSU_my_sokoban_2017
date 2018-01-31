@@ -4,7 +4,11 @@ group: stable
 
 os: linux
 
-dist: "debian"
+sudo: required
+
+
+
+dist: precise
 
 script:
   - make re
