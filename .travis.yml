@@ -4,19 +4,21 @@ group: stable
 
 os: linux
 
-sudo: required
-
-dist: precise
-
 script:
   - make re
 
 notifications:
   email: false
 
-before_install:
-  - sudo apt update
-  - sudo apt install libncurses5-dev libncursesw5-dev
+addons:
+  apt:
+    packages:
+      - libncurses5-dev
+      - libncursesw5-dev
+
+before_script:
+  - apt update
+  - apt install libncurses5-dev libncursesw5-dev
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
