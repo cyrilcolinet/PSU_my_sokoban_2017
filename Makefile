@@ -20,7 +20,7 @@ SRCNAMES 		= main.c 			\
 				  map_utils.c 		\
 				  movements.c 		\
 				  sokoban.c 		\
-				  uils.c
+				  utils.c
 
 SRC 			= $(addprefix $(SRCDIR), $(SRCNAMES))
 
